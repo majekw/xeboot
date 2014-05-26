@@ -62,6 +62,7 @@ Using:
 -----
 
 Boot process:
+
 1. Set serial to 9600, 8 bits, parity none, 1 stop bit
 2. Print greeting over serial
 3. Wait max 2 seconds for 'B' (capital 'b')
@@ -74,6 +75,7 @@ Boot process:
 10. Switch to xmodem communication and wait for data
 
 So, simply speaking you need:
+
 1. Connect to Atmega via serial and run some terminal application (for example Minicom)
 2. After boot you should get some prompt
 3. Hit 'B' and then 'P'
@@ -97,8 +99,10 @@ This bootloader is licensed unded GPL v3 license.
 
 Commercial use: you could use it to upload your own proprietary software to chip
 as long as you treat this bootloader as separate software.
+
 In short:
 - you put/deliver 2 pieces of software (XEBOOT + your software) = OK
 - you put one software into chip (treating XEBOOT as part of your software) = BAD
+
 Values of encrypting variables you could keep secret.
 
