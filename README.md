@@ -5,6 +5,8 @@ About:
 -----
 
 This is tiny (0.5KB) bootloader for AVR Atmega8 microcontroller.
+For Atmega88/168/328 support, check bootloader included in my other
+project: [lcd88](https://github.com/majekw/lcd88) (but without encryption).
 
 Protocol supported by bootloader: XMODEM
 
@@ -15,9 +17,9 @@ in packet. There are 2 coefficients used for 'encryption':
 
 - starting point within packet (variable 'poczatek')
 - offset for next byte in packet (variable 'mieszacz' - must be
-a prime number)
+a prime number less than 128)
 
-You clould add seed for xor if you wish :-)
+You could add seed for xor if you wish :-)
 
 Simple FreePascal converter from ihex to binary, and encrypter
 also is attached.
@@ -34,8 +36,8 @@ Use [AVRA](http://avra.sourceforge.net/) to compile.
 Before compiling adjust some defines:
 
 1. ZEGAR - set to your clock frequency in Hz
-2. uncomment .define use_crypt if you need image decryption
-and adjust mieszacz and poczatek
+2. If you need image decryption, uncomment '.define use_crypt' 
+and adjust 'mieszacz' and 'poczatek' variables.
 3. UART_RATE - set to other speed if 9600 is not what you like
 
 Compile simply by 'avra bootloader.asm'
@@ -72,7 +74,7 @@ Boot process:
 7. Wait max 2 seconds for 'P' (capital 'p')
 8. If received char is other than 'P' -> boot
 9. If timeout exceeded -> boot
-10. Switch to xmodem communication and wait for data
+10. Switch to xmodem communication and wait for binary data
 
 So, simply speaking you need:
 
@@ -90,6 +92,8 @@ XEBOOTloader was written by Marek Wodzinski (me) in 2007 based on Atmel
 Atmega8 datasheet, with small modification in 2011, and finally released to public in 2014.
 
 Public repository: https://github.com/majekw/xeboot
+
+My blog post about Xeboot: http://majek.mamy.to/xeboot/
 
 
 License:
